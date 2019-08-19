@@ -1,0 +1,21 @@
+import io.restassured.RestAssured;
+import io.restassured.specification.RequestSpecification;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.hamcrest.Matchers;
+
+import static io.restassured.RestAssured.defaultParser;
+import static io.restassured.RestAssured.given;
+
+public class FirstTestCase {
+
+    @Test(priority=1)
+    void seachingString()
+    {
+        RestAssured.baseURI = "https://www.google.com/";
+        RequestSpecification request = given();
+        Assert.assertEquals(request.get("/search?q=michael+jordan&num=1").getBody().prettyPrint().contains("Wikipedia"),true);
+        
+    }
+
+}
